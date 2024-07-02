@@ -1,0 +1,11 @@
+<div class="container mt-4">
+    <h1 class="text-center font-weight-bold text-white py-2 mb-4" style="background-color: #006400;">Filtrar  {{data.Tipo}} por nombre</h1>
+    <form role="form">
+      <div class="form-group">
+        <label for="inputId" class="font-weight-bold">Nombre a buscar</label>
+        <input type="text" class="form-control" id="inputId" [value]="" #id>
+      </div>
+    </form>
+    <button mat-button class="mt-4" (click)="Buscar(id.value, data.Tipo)">Buscar</button>
+  </div>
+  

@@ -1,0 +1,42 @@
+<div class="d-flex">
+    <div class="w-75 mr-3">
+      <form [formGroup]="tipoMovimientoForm" (ngSubmit)="onSubmit()" class="border border-success p-3">
+        <div class="form-group mb-3">
+          <label for="nombreMovimiento" class="text-success">Nombre del Movimiento:</label>
+          <input type="text" id="nombreMovimiento" formControlName="nombreMovimiento" class="form-control" placeholder="Nombre del Movimiento">
+        </div>
+        
+        <div formArrayName="campos" class="overflow-auto" style="max-height: 300px;">
+          <div *ngFor="let campo of campos.controls; let i = index" [formGroupName]="i" class="campo border-bottom border-success mb-3 pb-3">
+            <div class="form-group">
+              <label for="nombre{{i}}" class="text-success">Nombre del Campo:</label>
+              <input type="text" id="nombre{{i}}" formControlName="nombre" class="form-control" placeholder="Nombre del Campo">
+            </div>
+            
+            <div class="form-group">
+              <label for="tipo{{i}}" class="text-success">Tipo de Dato:</label>
+              <select id="tipo{{i}}" formControlName="tipo" class="form-control">
+                <option value="string">String</option>
+                <option value="array">Array</option>
+                <option value="integer">Integer</option>
+                <!-- Agrega más tipos según tus necesidades -->
+              </select>
+            </div>
+            
+            <button type="button" (click)="eliminarCampo(i)" class="btn btn-danger mr-2">Eliminar</button>
+          </div>
+        </div>
+        
+        <button type="button" (click)="agregarCampo()" class="btn btn-success mb-3 mr-2">Agregar Campo</button>
+        <button type="submit" class="btn btn-success mb-3">Guardar</button>
+      </form>
+    </div>
+    
+    <div class="w-25">
+      <h5 class="text-success">Lista de Campos Agregados:</h5>
+      <ul class="list-group overflow-auto" style="max-height: 300px;">
+        <li class="list-group-item" *ngFor="let campo of campos.controls; let i = index">{{ campo.value.nombre }} - {{ campo.value.tipo }}</li>
+      </ul>
+    </div>
+  </div>
+  

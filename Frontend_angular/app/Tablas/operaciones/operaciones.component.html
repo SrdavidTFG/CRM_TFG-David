@@ -1,0 +1,92 @@
+<div *ngIf="Tipo === 'Contactos' && Tipo2 !=='lista'">
+    <div  d-flex justify-content-center>
+        <p>
+            <a type="button" class="btn btn-success mx-2 " (click)="AnadirContacto()">Añadir</a>
+            <a type="button" class="btn btn-success mx-2 " (click)="DescargarListaPDF(Tipo)">Descargar En PDF</a>
+
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Tipo === 'Usuarios' && Tipo2 !=='lista'">
+    <div  d-flex justify-content-center>
+        <p>
+            <a type="button" class="btn btn-success mx-2 " (click)="AnadirUsuario()" >Añadir Usuario</a>
+            <a type="button" class="btn btn-success mx-2 " (click)="DescargarListaPDF(Tipo)">Descargar En PDF</a>
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Tipo === 'Contactos' && Tipo2 ==='lista'">
+    <div  d-flex justify-content-center>
+        <p>
+            <a type="button" class="btn btn-success mx-2" routerLink="/app-cabecera" [queryParams]="{ nombre: item.nombre, email: item.email, user: item.userGlifing , item: item}" routerLinkActive="active" ariaCurrentWhenActive="page" style="background-color: #6B9C6B">Ver</a>
+            <button type="button" class="btn btn-secondary" type="button"  routerLink="/app-cabecera" [queryParams]="{ nombre: item.nombre, email: item.email, user: item.userGlifing, Edit : 'True', item: item}" routerLinkActive="active" ariaCurrentWhenActive="page" style="background-color: rgb(168, 108, 158)">Editar</button>
+            <button type="button" class="btn btn-success mx-2" (click)="BorrarContacto(item)"  style="background-color: rgb(219, 99, 96)">Borrar Contacto</button>
+            <a type="button" class="btn btn-success mx-2 border-white" (click)="DescargarEnPDF(Tipo,item.email)" style="background-color: #75636C">Descargar En PDF</a>
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Tipo === 'Usuarios' &&  Tipo2==='lista'">
+    <div  d-flex justify-content-center>
+        <p>
+            <a type="button" class="btn btn-success mx-2" (click)="DetalleUsuario(item)" style="background-color: #6B9C6B">Ver</a>
+            <button type="button" class="btn btn-secondary " (click)="EditarUsuario(item)" style="background-color: rgb(168, 108, 158)">Editar </button>
+            <button type="button" class="btn btn-success mx-2" (click)="EliminarUsuario(item)" style="background-color: rgb(219, 99, 96)">Borrar Usuario</button>
+            <a type="button" class="btn btn-success mx-2 border-white" (click)="DescargarEnPDF(Tipo,item.email)" style="background-color: #75636C">Descargar En PDF</a>
+        </p>
+    </div>
+</div>
+<div *ngIf="Clientify==='Si'">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-success mx-2 border-white" (click)="InsertarClientify()">Añadir Contacto</button>
+
+        </p>
+    </div>
+</div>
+<div *ngIf="Movimientos==='Si' && Lista!=='Si' && modificar!=='Si'">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-outline-light text-white btn-secondary"(click)="goBack()">Atrás</button>
+
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Movimientos==='Si' && Lista!=='Si' && modificar==='Si'">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-success mx-2" style="background-color: rgb(168, 108, 158)"(click)="ModificarContacto(emailEdit,nombreEdit,userEdit)">Editar</button>
+            <button  type="button" class="btn btn-success mr-auto" style="background-color: rgb(168, 108, 158)"(click)="goBack()">Atrás</button>
+
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Movimientos==='Si' && Lista==='Si' && !listaSeleccionada">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-success mx-2" (click)="anadirVentanaMovimientos(emailEdit)" style="background-color: #6B9C6B"> Añadir Ventana Movimientos</button>
+            <button type="button" class="btn btn-success mx-2" style="background-color: rgb(168, 108, 158)" (click)="CrearNuevoTipoMovimiento(emailEdit)">Crear nuevo tipo movimiento</button>
+        </p>
+    </div>
+</div>
+<div *ngIf="Movimientos==='Si' && Lista==='Si' && listaSeleccionada && Cabecera!=='Si'">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-success mx-2" style="background-color: rgb(168, 108, 158)"(click)="EditarInstancia(item, emailEdit, listaSeleccionada)"> Editar</button>
+            <button type="button" class="btn btn-success mx-2" (click)="EliminarInstancia(item, emailEdit, listaSeleccionada)"style="background-color: rgb(219, 99, 96)">Borrar</button>
+        </p>
+    </div>
+</div>
+
+<div *ngIf="Movimientos==='Si' && Lista==='Si' && listaSeleccionada && Cabecera==='Si'">
+    <div  d-flex justify-content-center>
+        <p>
+            <button type="button" class="btn btn-success mx-2" (click)="anadirInstanciaMovimiento(listaSeleccionada, emailEdit)"  style="background-color: #6B9C6B" > Añadir instancia</button>
+            <button type="button" class="btn btn-success mx-2" (click)="BorrarMovimiento(listaSeleccionada, emailEdit)" style="background-color: rgb(219, 99, 96)"> BorrarMovimiento</button>
+        </p>
+    </div>
+</div>

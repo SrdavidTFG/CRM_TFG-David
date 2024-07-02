@@ -1,0 +1,1680 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mi API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/articles": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtener lista de usuarios",
+                "operationId": "App\\Controller\\ApiController::TraerUsuarios",
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuarios obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Usuario"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "Contactos"
+                ],
+                "summary": "Obtener lista de contactos",
+                "operationId": "App\\Controller\\ApiController::TraerContactos",
+                "responses": {
+                    "200": {
+                        "description": "Lista de contactos obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contacto"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor"
+                    }
+                }
+            }
+        },
+        "/get-token": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Obtener token de autenticación",
+                "operationId": "App\\Controller\\ApiController::getToken",
+                "requestBody": {
+                    "description": "Datos de autenticación",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "description": "Nombre de usuario",
+                                        "type": "string",
+                                        "example": "davidmontero.glifing@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "Contraseña del usuario",
+                                        "type": "string",
+                                        "example": "Pokemonnegra2*"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token de autenticación obtenido correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "description": "Token de autenticación",
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3V1aWQiOiIxMjM0NTY3ODkwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Credenciales inválidas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clientify-contacts": {
+            "get": {
+                "tags": [
+                    "Clientify"
+                ],
+                "summary": "Obtener contactos desde Clientify",
+                "operationId": "App\\Controller\\ApiController::TraerClientify",
+                "responses": {
+                    "200": {
+                        "description": "Lista de contactos obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID del contacto",
+                                                "type": "string",
+                                                "example": "123456"
+                                            },
+                                            "owner": {
+                                                "description": "Propietario del contacto",
+                                                "type": "string",
+                                                "example": "owner123"
+                                            },
+                                            "owner_name": {
+                                                "description": "Nombre del propietario",
+                                                "type": "string",
+                                                "example": "John Doe"
+                                            },
+                                            "first_name": {
+                                                "description": "Nombre del contacto",
+                                                "type": "string",
+                                                "example": "Jane"
+                                            },
+                                            "last_name": {
+                                                "description": "Apellido del contacto",
+                                                "type": "string",
+                                                "example": "Doe"
+                                            },
+                                            "status": {
+                                                "description": "Estado del contacto",
+                                                "type": "string",
+                                                "example": "active"
+                                            },
+                                            "emails": {
+                                                "description": "Lista de correos electrónicos del contacto",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "phones": {
+                                                "description": "Lista de números de teléfono del contacto",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "created": {
+                                                "description": "Fecha de creación del contacto",
+                                                "type": "string",
+                                                "example": "2023-01-01T12:00:00Z"
+                                            },
+                                            "modified": {
+                                                "description": "Fecha de modificación del contacto",
+                                                "type": "string",
+                                                "example": "2023-01-02T08:00:00Z"
+                                            },
+                                            "last_contact": {
+                                                "description": "Último contacto con el contacto",
+                                                "type": "string",
+                                                "example": "2023-01-03T15:30:00Z"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado: token de autenticación inválido o expirado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Unexpected HTTP status: 500 Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Clientify"
+                ],
+                "summary": "Enviar contacto a Clientify",
+                "operationId": "App\\Controller\\ApiController::enviarContactoClientify",
+                "requestBody": {
+                    "description": "Datos del contacto a enviar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name",
+                                    "last_name",
+                                    "email",
+                                    "phone",
+                                    "status",
+                                    "title",
+                                    "company",
+                                    "street",
+                                    "city",
+                                    "state",
+                                    "country",
+                                    "postal_code"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "description": "Nombre del contacto",
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "description": "Apellido del contacto",
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del contacto",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "phone": {
+                                        "description": "Número de teléfono del contacto",
+                                        "type": "string",
+                                        "example": "+1234567890"
+                                    },
+                                    "status": {
+                                        "description": "Estado del contacto",
+                                        "type": "string",
+                                        "example": "active"
+                                    },
+                                    "title": {
+                                        "description": "Título del contacto",
+                                        "type": "string",
+                                        "example": "Mr."
+                                    },
+                                    "company": {
+                                        "description": "Nombre de la empresa del contacto",
+                                        "type": "string",
+                                        "example": "Acme Corp"
+                                    },
+                                    "street": {
+                                        "description": "Calle del contacto",
+                                        "type": "string",
+                                        "example": "123 Main St"
+                                    },
+                                    "city": {
+                                        "description": "Ciudad del contacto",
+                                        "type": "string",
+                                        "example": "Anytown"
+                                    },
+                                    "state": {
+                                        "description": "Estado/provincia del contacto",
+                                        "type": "string",
+                                        "example": "State"
+                                    },
+                                    "country": {
+                                        "description": "País del contacto",
+                                        "type": "string",
+                                        "example": "Country"
+                                    },
+                                    "postal_code": {
+                                        "description": "Código postal del contacto",
+                                        "type": "string",
+                                        "example": "12345"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Contacto enviado correctamente a Clientify",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mensaje de éxito",
+                                            "type": "string",
+                                            "example": "Contacto enviado exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado: token de autenticación inválido o expirado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor al intentar enviar el contacto",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Unexpected HTTP status: 500 Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/insertar-usuario": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Insertar un usuario en la base de datos Mongo",
+                "operationId": "App\\Controller\\ApiController::InsertarUsuario",
+                "requestBody": {
+                    "description": "Datos del usuario a insertar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "database",
+                                    "nombre",
+                                    "email",
+                                    "user"
+                                ],
+                                "properties": {
+                                    "database": {
+                                        "description": "Nombre de la base de datos Mongo",
+                                        "type": "string",
+                                        "example": "nombre_de_la_base_de_datos"
+                                    },
+                                    "nombre": {
+                                        "description": "Nombre del usuario",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "user": {
+                                        "description": "Nombre de usuario del usuario",
+                                        "type": "string",
+                                        "example": "johndoe"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario insertado correctamente en la base de datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "InsertarUsuario",
+                                            "type": "string",
+                                            "example": "Usuario insertado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/modificar-usuario": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Modificar un usuario en la base de datos Mongo",
+                "operationId": "App\\Controller\\ApiController::ModificarUsuario",
+                "requestBody": {
+                    "description": "Datos del usuario a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "database",
+                                    "nombre",
+                                    "email",
+                                    "user"
+                                ],
+                                "properties": {
+                                    "database": {
+                                        "description": "Nombre de la base de datos Mongo",
+                                        "type": "string",
+                                        "example": "nombre_de_la_base_de_datos"
+                                    },
+                                    "nombre": {
+                                        "description": "Nombre del usuario",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "user": {
+                                        "description": "Nombre de usuario del usuario",
+                                        "type": "string",
+                                        "example": "johndoe"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario modificado correctamente en la base de datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "ModificarUsuario",
+                                            "type": "string",
+                                            "example": "Usuario modificado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/eliminar-usuario": {
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Eliminar un usuario de la base de datos Mongo",
+                "operationId": "App\\Controller\\ApiController::EliminarUsuario",
+                "requestBody": {
+                    "description": "Datos del usuario a eliminar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "database",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "database": {
+                                        "description": "Nombre de la base de datos Mongo",
+                                        "type": "string",
+                                        "example": "nombre_de_la_base_de_datos"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario a eliminar",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado correctamente de la base de datos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "EliminarUsuario",
+                                            "type": "string",
+                                            "example": "Usuario eliminado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/obtener-movimientos": {
+            "get": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Obtener los movimientos asociados a un usuario por su correo electrónico",
+                "operationId": "App\\Controller\\ApiController::obtenerMovimientos",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario para filtrar los movimientos",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de movimientos obtenida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Movimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: correo electrónico faltante o incorrecto",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anadir-ventana-movimientos": {
+            "post": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Añadir una nueva ventana de movimientos para un usuario",
+                "operationId": "App\\Controller\\ApiController::anadirVentanaMovimientos",
+                "requestBody": {
+                    "description": "Datos para añadir una nueva ventana de movimientos",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "description": "Nombre de la nueva ventana de movimientos",
+                                        "type": "string",
+                                        "example": "Ventana de movimientos 1"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario asociado",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ventana de movimientos añadida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "anadirVentanaMovimientos",
+                                            "type": "string",
+                                            "example": "Ventana de movimientos añadida correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/eliminar-movimiento": {
+            "delete": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Eliminar un movimiento de una lista específica para un usuario",
+                "operationId": "App\\Controller\\ApiController::eliminarMovimiento",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario dueño de la lista de movimientos",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "NombreListaMovimiento",
+                        "in": "query",
+                        "description": "Nombre de la lista de movimientos de la cual se eliminará un movimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movimiento eliminado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "eliminarMovimiento",
+                                            "type": "string",
+                                            "example": "Movimiento eliminado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anadir-instancias-movimientos": {
+            "post": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Añadir instancias de movimientos a una lista específica para un usuario",
+                "operationId": "App\\Controller\\ApiController::anadirInstanciasMovimientos",
+                "requestBody": {
+                    "description": "Datos para añadir instancias de movimientos a una lista específica",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nombre",
+                                    "lista",
+                                    "email",
+                                    "TiposCampos"
+                                ],
+                                "properties": {
+                                    "nombre": {
+                                        "description": "Nombre o contenido de la instancia a añadir",
+                                        "type": "string",
+                                        "example": "Instancia 1"
+                                    },
+                                    "lista": {
+                                        "description": "Nombre de la lista de movimientos donde se añadirá la instancia",
+                                        "type": "string",
+                                        "example": "Lista de movimientos 1"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario asociado",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "TiposCampos": {
+                                        "description": "Tipos o detalles de los campos de la instancia",
+                                        "type": "string",
+                                        "example": "Campos específicos de la instancia"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Instancia de movimiento añadida correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "anadirInstanciasMovimientos",
+                                            "type": "string",
+                                            "example": "Instancia de movimiento añadida correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/editar-instancias-movimientos": {
+            "put": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Editar una instancia de movimiento en una lista específica para un usuario",
+                "operationId": "App\\Controller\\ApiController::EditarInstanciasMovimientos",
+                "requestBody": {
+                    "description": "Datos para editar una instancia de movimiento en una lista específica",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "contenido",
+                                    "email",
+                                    "nombreLista",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "contenido": {
+                                        "description": "Nuevo contenido o nombre de la instancia a editar",
+                                        "type": "string",
+                                        "example": "Nuevo contenido"
+                                    },
+                                    "email": {
+                                        "description": "Correo electrónico del usuario asociado",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    },
+                                    "nombreLista": {
+                                        "description": "Nombre de la lista de movimientos donde se encuentra la instancia a editar",
+                                        "type": "string",
+                                        "example": "Lista de movimientos 1"
+                                    },
+                                    "id": {
+                                        "description": "ID único de la instancia a editar",
+                                        "type": "string",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Instancia de movimiento editada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "EditarInstanciasMovimientos",
+                                            "type": "string",
+                                            "example": "Instancia de movimiento editada correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/eliminar-instancias-movimientos": {
+            "delete": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Eliminar una instancia de movimiento en una lista específica para un usuario",
+                "operationId": "App\\Controller\\ApiController::EliminarInstanciasMovimientos",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario asociado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombreLista",
+                        "in": "query",
+                        "description": "Nombre de la lista de movimientos donde se encuentra la instancia a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID único de la instancia a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Instancia de movimiento eliminada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "EliminarInstanciasMovimientos",
+                                            "type": "string",
+                                            "example": "Instancia de movimiento eliminada correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/filtrar-por-nombre": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Filtrar usuarios por nombre en una base específica",
+                "operationId": "App\\Controller\\ApiController::FiltrarPorNombre",
+                "parameters": [
+                    {
+                        "name": "Nombre",
+                        "in": "query",
+                        "description": "Nombre del usuario a filtrar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Base",
+                        "in": "query",
+                        "description": "Base de datos específica donde se realizará el filtro",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de usuarios filtrados correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Usuario"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/crear-tipo-movimiento": {
+            "post": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Crear un nuevo tipo de movimiento con campos personalizados",
+                "operationId": "App\\Controller\\ApiController::CrearTipoMovimiento",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario que crea el tipo de movimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "query",
+                        "description": "Nombre del nuevo tipo de movimiento a crear",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombresCampos",
+                        "in": "query",
+                        "description": "Nombres de los campos personalizados del nuevo tipo de movimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "tiposCampos",
+                        "in": "query",
+                        "description": "Tipos de datos de los campos personalizados del nuevo tipo de movimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "string",
+                                    "integer",
+                                    "boolean",
+                                    "array"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tipo de movimiento creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TipoMovimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: datos incompletos o incorrectos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cargar-tipo-movimiento": {
+            "get": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Cargar todos los tipos de movimiento disponibles",
+                "operationId": "App\\Controller\\ApiController::CargarTipoMovimiento",
+                "responses": {
+                    "200": {
+                        "description": "Tipos de movimiento cargados exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TipoMovimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: no se pudieron cargar los tipos de movimiento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/obtener-movimientos-usuario": {
+            "get": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Obtener los movimientos asociados a un usuario por su correo electrónico",
+                "operationId": "App\\Controller\\ApiController::obtenerMovimientosUsuario",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario para obtener sus movimientos",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movimientos del usuario obtenidos exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Movimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: no se pudieron obtener los movimientos del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/obtener-campos-movimiento": {
+            "get": {
+                "tags": [
+                    "Movimientos"
+                ],
+                "summary": "Obtener los campos asociados a un movimiento para un usuario específico",
+                "operationId": "App\\Controller\\ApiController::obtenerCamposMovimiento",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario para obtener los campos del movimiento",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nombreMovimiento",
+                        "in": "query",
+                        "description": "Nombre del movimiento para el cual se desean obtener los campos",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Campos del movimiento obtenidos exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CampoMovimiento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: no se pudieron obtener los campos del movimiento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/descargar-a-pdf": {
+            "get": {
+                "tags": [
+                    "Descargas"
+                ],
+                "summary": "Descargar contenido en formato PDF",
+                "operationId": "App\\Controller\\ApiController::DescargarAPdf",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario para descargar el contenido",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "in": "query",
+                        "description": "Nombre de la base de datos de donde se obtendrá el contenido (puede ser 'Contactos' o 'CRM_CONTACTS')",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Archivo PDF descargado exitosamente",
+                        "content": {
+                            "application/pdf": {}
+                        }
+                    },
+                    "400": {
+                        "description": "Error en la solicitud: no se pudo generar el archivo PDF",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/validar-usuario": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Validar las credenciales de un usuario",
+                "operationId": "App\\Controller\\ApiController::ValidarUsuario",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Correo electrónico del usuario a autenticar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contraseña",
+                        "in": "query",
+                        "description": "Contraseña del usuario a autenticar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario autenticado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "authenticated": {
+                                            "description": "Indica si el usuario fue autenticado correctamente",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "description": "Mensaje de éxito",
+                                            "type": "string",
+                                            "example": "Usuario autenticado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error de autenticación: credenciales incorrectas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "authenticated": {
+                                            "description": "Indica si la autenticación falló",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "description": "Mensaje de error",
+                                            "type": "string",
+                                            "example": "Credenciales incorrectas"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Usuario": {
+                "title": "Usuario",
+                "description": "Esquema del objeto Usuario",
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del usuario",
+                        "type": "string",
+                        "example": "Juan Pérez"
+                    },
+                    "email": {
+                        "description": "Correo electrónico del usuario",
+                        "type": "string",
+                        "format": "email",
+                        "example": "juan@example.com"
+                    },
+                    "usuario": {
+                        "description": "Nombre de usuario",
+                        "type": "string",
+                        "example": "juanperez"
+                    },
+                    "contrasena": {
+                        "description": "Contraseña del usuario",
+                        "type": "string",
+                        "example": "********"
+                    }
+                },
+                "type": "object"
+            },
+            "Contacto": {
+                "title": "Contacto",
+                "description": "Esquema del objeto Contacto",
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del contacto",
+                        "type": "string",
+                        "example": "Ana García"
+                    },
+                    "email": {
+                        "description": "Correo electrónico del contacto",
+                        "type": "string",
+                        "format": "email",
+                        "example": "ana@example.com"
+                    },
+                    "telefono": {
+                        "description": "Número de teléfono del contacto",
+                        "type": "string",
+                        "example": "123456789"
+                    }
+                },
+                "type": "object"
+            },
+            "Movimiento": {
+                "title": "Movimiento",
+                "description": "Esquema del movimiento asociado a un usuario",
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del movimiento",
+                        "type": "string",
+                        "example": "Movimiento 1"
+                    },
+                    "array_generador": {
+                        "description": "Nombre del array generador",
+                        "type": "string",
+                        "example": "Array Generador 1"
+                    },
+                    "nombre_campos": {
+                        "description": "Nombres de los campos asociados al movimiento",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Campo 1",
+                            "Campo 2"
+                        ]
+                    },
+                    "instancias": {
+                        "description": "Instancias asociadas al movimiento",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Instancia 1",
+                            "Instancia 2"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "TipoMovimiento": {
+                "title": "Tipo de Movimiento",
+                "description": "Esquema que describe un tipo de movimiento",
+                "properties": {
+                    "email": {
+                        "description": "Correo electrónico del usuario asociado",
+                        "type": "string",
+                        "example": "usuario@ejemplo.com"
+                    },
+                    "nombre": {
+                        "description": "Nombre del tipo de movimiento",
+                        "type": "string",
+                        "example": "Tipo de Movimiento 1"
+                    },
+                    "nombresCampos": {
+                        "description": "Nombres de los campos asociados al tipo de movimiento",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Campo 1",
+                            "Campo 2"
+                        ]
+                    },
+                    "tiposCampos": {
+                        "description": "Tipos de los campos asociados al tipo de movimiento",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "Tipo 1",
+                            "Tipo 2"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "CampoMovimiento": {
+                "title": "Campo de Movimiento",
+                "description": "Esquema que describe un campo de movimiento",
+                "properties": {
+                    "nombre": {
+                        "description": "Nombre del campo",
+                        "type": "string",
+                        "example": "Campo 1"
+                    },
+                    "tipo": {
+                        "description": "Tipo del campo",
+                        "type": "string",
+                        "example": "Texto"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

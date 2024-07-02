@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h1 class="text-center font-weight-bold text-white py-2 mb-4" style="background-color: #006400;">Detalle del Registro</h1>
+  <form role="form">
+    <div class="form-group">
+      <label for="inputId" class="font-weight-bold">Nombre</label>
+      <input type="text" class="form-control" id="inputId" [value]="data.data.nombre" #Nombre readonly>
+    </div>
+    <div class="form-group">
+      <label for="inputName" class="font-weight-bold">Email</label>
+      <input type="text" class="form-control" id="inputName" [value]="data.data.email" #Email readonly>
+    </div>
+    <div class="form-group">
+      <label for="inputSecondName" class="font-weight-bold">Usuario</label>
+      <input type="text" class="form-control" id="inputSecondName" [value]="data.data.userGlifing" #User readonly>
+    </div>
+  </form>
+  <button mat-button class="mt-4" (click)="onNoClick(Nombre.value, Email.value, User.value)">Cerrar</button>
+</div>

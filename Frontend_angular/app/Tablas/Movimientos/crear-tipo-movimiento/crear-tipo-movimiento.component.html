@@ -1,0 +1,24 @@
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div formArrayName="inputs">
+    <div *ngFor="let input of inputs.controls; let i = index" class="mb-3">
+      <!-- Verificamos el tipo de control y lo tratamos como un FormGroup -->
+      <ng-container [formGroupName]="i" *ngIf="typesArray[i] !== 2">
+        <div *ngIf="typesArray[i] === 1" class="form-group">
+          <label for="stringInput{{i}}">String Input {{i + 1}}</label>
+          <input formControlName="value" id="stringInput{{i}}" class="form-control" placeholder="Enter string">
+        </div>
+        <div *ngIf="typesArray[i] === 3" class="form-group">
+          <label for="integerInput{{i}}">Integer Input {{i + 1}}</label>
+          <input formControlName="value" id="integerInput{{i}}" class="form-control" type="number" placeholder="Enter integer">
+        </div>
+      </ng-container>
+
+      <!-- Tratamos el input como un FormArray -->
+      <div *ngIf="typesArray[i] === 2" class="form-group">
+        <label for="arrayInput{{i}}">Array Input {{i + 1}}</label>
+        <input [formControlName]="i" id="arrayInput{{i}}" class="form-control" placeholder="Enter array element">
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

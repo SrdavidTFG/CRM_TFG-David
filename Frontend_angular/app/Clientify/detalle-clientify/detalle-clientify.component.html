@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white py-4 d-flex justify-content-center align-items-center">
+        <h1 class="modal-title text-center d-flex justify-content-center align-items-center" id="exampleModalLabel" style="font-size: 2rem;">Detalles del Elemento</h1>
+      </div>
+      <div class="modal-body">
+        <p><strong>ID:</strong> {{ data.data.id }}</p>
+        <p><strong>Propietario:</strong> {{ data.data.owner }}</p>
+        <p><strong>Nombre del Propietario:</strong> {{ data.data.owner_name }}</p>
+        <p><strong>Nombre:</strong> {{ data.data.first_name }}</p>
+        <p><strong>Apellido:</strong> {{ data.data.last_name }}</p>
+        <p><strong>Estado:</strong> {{ data.data.status }}</p>
+        <p><strong>Emails:</strong></p>
+        <ul class="list-group mb-3">
+          <li *ngFor="let email of data.data.emails" class="list-group-item">{{ email }}</li>
+        </ul>
+        <p><strong>Teléfonos:</strong></p>
+        <ul class="list-group mb-3">
+          <li *ngFor="let phone of data.data.phones" class="list-group-item">{{ phone }}</li>
+        </ul>
+        <p><strong>Creado:</strong> {{ data.data.created }}</p>
+        <p><strong>Modificado:</strong> {{ data.data.modified }}</p>
+        <p><strong>Último Contacto:</strong> {{ data.data.last_contact }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="Cerrar()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

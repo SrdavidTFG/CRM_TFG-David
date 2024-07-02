@@ -1,0 +1,48 @@
+<div class="card panel panel-yellow border border-success">
+  <div class="card-header panel-heading d-flex justify-content-between align-items-center">
+      <h4 class="card-title panel-title mb-0">Movimientos</h4>
+      <app-operaciones [Movimientos]="Movimientos" [Lista]="Lista" [emailEdit]="emailEdit"></app-operaciones>
+  </div>        
+  <div class="card-body panel-body">
+      <div class="panel tabbed-panel panel-primary">
+          <div class="panel-heading d-flex justify-content-between align-items-start">
+              <div class="nav nav-tabs nav-tabs-stramine" role="tablist">
+                  <a *ngFor="let id of datos" [class.active]="id === listaSeleccionada" (click)="seleccionarLista(id)">
+                      <button class="pull-right border-0 rounded-top bg-success text-white">{{id.nombre}} ({{id.instancias.length}})</button>
+                  </a>
+              </div>
+              <div class="m1-auto"> 
+                  <app-operaciones [Movimientos]="Movimientos" [Lista]="Lista" [emailEdit]="emailEdit" [listaSeleccionada]="listaSeleccionada" [Cabecera]="Cabecera"></app-operaciones>
+              </div>
+          </div>
+      </div>
+      <div class="tab-content tab-content-stramine">
+          <div class="tab-pane fade show active" role="tabpanel">
+              <ul *ngIf="listaSeleccionada" class="list-group list-group-stramine">
+                  <table class="table table-bordered">
+                      <thead class="thead-dark">
+                          <tr>
+                              <th *ngFor="let key of getKeys(listaSeleccionada.instancias[0])">{{ key }}</th>
+                              <th>Operaciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let item of listaSeleccionada.instancias">
+                              <td *ngFor="let key of getKeys(item)">{{ item[key] }}</td>
+                              <td>
+                                  <app-operaciones 
+                                      [Movimientos]="Movimientos" 
+                                      [Lista]="Lista" 
+                                      [emailEdit]="emailEdit" 
+                                      [listaSeleccionada]="listaSeleccionada" 
+                                      [item]="item">
+                                  </app-operaciones>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>

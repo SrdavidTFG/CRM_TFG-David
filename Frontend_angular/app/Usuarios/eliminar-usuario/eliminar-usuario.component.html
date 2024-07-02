@@ -1,0 +1,18 @@
+<div class="modal-dialog" role="document" style="max-width: 250px;">
+  <div class="modal-content border-danger">
+    <div class="modal-header bg-danger text-white">
+      <h5 class="modal-title" id="confirmModalLabel">Confirmar Eliminación</h5>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de que deseas eliminar al usuario?</p>
+      <div class="form-group">
+        <label for="inputEmail" class="font-weight-bold">Email del Usuario</label>
+        <input type="text" class="form-control" id="inputEmail" [value]="data.item.email" #email readonly>
+      </div>
+    </div>
+    <div class="modal-footer text-center">
+      <button type="button" class="btn btn-danger mr-2" (click)="eliminarUsuario(email.value)">Eliminar</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+</div>

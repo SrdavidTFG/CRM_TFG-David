@@ -1,0 +1,62 @@
+<div class="container mt-4 border border-success">
+  <div class="modal-dialog">
+    <div class="modal-content ">
+      <div class="modal-header bg-success text-white py-4">
+        <h3 class="modal-title mx-auto" id="exampleModalLabel" >Formulario de Contacto</h3>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+        <form (submit)="Enviar(first_name.value,last_name.value,email.value,phone.value,street.value,city.value,state.value,country.value,postal_code.value,status.value,title.value,company.value)">
+          <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="first_name" [value]="" #first_name>
+          </div>
+          <div class="mb-3">
+            <label for="last_name" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="last_name" [value]="" #last_name>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" [value]="" #email>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="phone" [value]="" #phone>
+          </div>
+          <div class="mb-3">
+            <label for="street" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="street" [value]="" #street>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="city" [value]="" #city>
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="state" [value]="" #state>
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">País</label>
+            <input type="text" class="form-control" id="country" [value]="" #country>
+          </div>
+          <div class="mb-3">
+            <label for="postal_code" class="form-label">Código Postal</label>
+            <input type="text" class="form-control" id="postal_code" [value]="" #postal_code>
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="status" [value]="" #status>
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" [value]="" #title>
+          </div>
+          <div class="mb-3">
+            <label for="company" class="form-label">Empresa</label>
+            <input type="text" class="form-control" id="company" [value]="" #company>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

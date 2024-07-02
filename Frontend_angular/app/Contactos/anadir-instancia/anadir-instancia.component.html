@@ -1,0 +1,13 @@
+<div class="container mt-4">
+    <h1 class="text-center font-weight-bold text-white py-2 mb-4" style="background-color: #006400;">Añadir Instancia en {{data.listaSeleccionada.nombre}} del usuario {{data.emailEdit}}</h1>
+    <form [formGroup]="miFormulario" role="form">
+      <div class="form-group">
+        <label for="campo">Campo:</label>
+        <input type="text" formControlName="campo" id="campo" class="form-control" placeholder="Ingrese el campo" #fecha>
+        <div *ngIf="miFormulario.get('campo')?.hasError('pattern')" class="text-danger">
+          El formato de la fecha no es válido. El formato debe ser YYYY-MM-DD.
+        </div>
+      </div>
+    </form>
+    <button mat-button class="mt-4" (click)="anadirInstanciaMovimiento(fecha.value, data.listaSeleccionada.nombre, data.emailEdit)" [disabled]="!miFormulario.valid">Confirmar</button>
+  </div> 

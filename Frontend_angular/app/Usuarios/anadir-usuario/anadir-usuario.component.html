@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h1 class="text-center font-weight-bold text-white py-2 mb-4" style="background-color: #006400;">Detalle del Registro</h1>
+  <form [formGroup]="miFormulario" role="form">
+    <div class="form-group">
+      <label for="inputId" class="font-weight-bold">Nombre</label>
+      <input type="text" class="form-control" id="inputId" formControlName="nombre" placeholder="Ingrese el nombre">
+    </div>
+    <div class="form-group">
+      <label for="campo">Email:</label>
+      <input type="email" formControlName="email" id="campo" class="form-control" placeholder="Ingrese el email">
+      <div *ngIf="miFormulario.get('email')?.hasError('email')" class="text-danger">
+        El formato de email no es válido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputSecondName" class="font-weight-bold">Usuario</label>
+      <input type="text" class="form-control" id="inputSecondName" formControlName="usuario" placeholder="Ingrese el usuario">
+    </div>
+  </form>
+  <button mat-button class="mt-4" (click)="anadirUsuario()" [disabled]="!miFormulario.valid">Confirmar</button>
+</div>
